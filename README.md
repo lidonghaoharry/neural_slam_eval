@@ -77,7 +77,7 @@ Please refer to Section 1.2 of our [supplementary material](https://arxiv.org/ab
 
 We provide our culling script that subsumes all three culling strategies mentioned above in case you want to follow the other two protocols. Here is an example usage:
 ```bash
-INPUT_MESH=output/Replica/office0/mesh_final.ply
+INPUT_MESH=/home/lidonghao/ROB590research/results/Replica/coslam/office0/mesh_track1999.ply
 python cull_mesh.py --config configs/Replica/office0.yaml --input_mesh $INPUT_MESH --remove_occlusion --virtual_cameras --gt_pose  # Co-SLAM strategy
 python cull_mesh.py --config configs/Replica/office0.yaml --input_mesh $INPUT_MESH --remove_occlusion --gt_pose  # Neural-RGBD/GO-Surf strategy
 python cull_mesh.py --config configs/Replica/office0.yaml --input_mesh $INPUT_MESH --gt_pose  # iMAP/NICE-SLAM strategy
@@ -132,13 +132,13 @@ For reproducibility purpose we also included the sampled 1000 camera poses for 2
 Then run the culling script to cull the reconstructed mesh
 ```bash
 # Put your own path to reconstructed mesh. Here is just an example
-INPUT_MESH=output/Replica/office0/mesh_final.ply
+INPUT_MESH=/home/lidonghao/ROB590research/results/Replica/coslam/office0/mesh_track1999.ply
 VIRT_CAM_PATH=eval_data/Replica/office0/virtual_cameras
 python cull_mesh.py --config configs/Replica/office0.yaml --input_mesh $INPUT_MESH --remove_occlusion --virtual_cameras --virt_cam_path $VIRT_CAM_PATH --gt_pose  # Co-SLAM strategy
 ```
 Once you've got the culled reconstructed mesh, the evaluation follows similar pipeline as iMAP/NICE-SLAM. 
 ```bash
-REC_MESH=output/Replica/office0/mesh_final_cull_virt_cams.ply
+REC_MESH=/home/lidonghao/ROB590research/results/Replica/coslam/office0/mesh_final_cull_virt_cams.ply
 GT_MESH=eval_data/Replica/office0/gt_mesh_cull_virt_cams.ply)
 python eval_recon.py python --rec_mesh $REC_MESH --gt_mesh $GT_MESH --dataset_type Replica -2d -3d
 ```
